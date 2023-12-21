@@ -1,6 +1,8 @@
 package dev.passerby.seven_winds_test.presentation.fragments
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -31,6 +33,7 @@ class RegisterFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         observeViewModel()
+        addTextChangeListeners()
 
         binding.apply {
             registerMainButton.setOnClickListener {
@@ -39,6 +42,9 @@ class RegisterFragment : Fragment() {
                 val passwordConf = binding.registerPasswordConfEditText.text?.trim().toString()
                 if (password == passwordConf) {
                     viewModel.registerUser(AuthUserDataModel(login, password))
+                } else {
+                    registerPasswordContainer.error = "Пароли не совпадают"
+                    registerPasswordConfContainer.error = "Пароли не совпадают"
                 }
             }
             registerLoginButton.setOnClickListener {
@@ -48,13 +54,54 @@ class RegisterFragment : Fragment() {
     }
 
     private fun observeViewModel() {
-        with(viewModel) {
-            isRegisterSuccessful.observe(viewLifecycleOwner) {
-                if (it) {
-                    findNavController().navigate(RegisterFragmentDirections.actionRegisterFragmentToLoginFragment())
+        viewModel.apply {
+            with(binding) {
+                isRegisterSuccessful.observe(viewLifecycleOwner) {
+                    if (it) {
+                        findNavController().navigate(RegisterFragmentDirections.actionRegisterFragmentToLoginFragment())
+                    }
+                }
+                isLoginFieldValid.observe(viewLifecycleOwner) {
+                    registerEmailContainer.error = if (it) {
+                        null
+                    } else {
+                        "Пользователь с такой почтой уже сущетсвует"
+                    }
                 }
             }
         }
+    }
+
+    private fun addTextChangeListeners() {
+        binding.registerEmailEditText.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                viewModel.resetEmailField()
+            }
+
+            override fun afterTextChanged(p0: Editable?) {}
+        })
+
+        binding.registerPasswordEditText.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                viewModel.resetPasswordField()
+            }
+
+            override fun afterTextChanged(p0: Editable?) {}
+        })
+
+        binding.registerPasswordConfEditText.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                viewModel.resetPasswordField()
+            }
+
+            override fun afterTextChanged(p0: Editable?) {}
+        })
     }
 
     override fun onDestroy() {

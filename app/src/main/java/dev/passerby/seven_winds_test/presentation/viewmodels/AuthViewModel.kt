@@ -18,19 +18,19 @@ class AuthViewModel(application: Application) : AndroidViewModel(application) {
     private val loginUserUseCase = LoginUserUseCase(repository)
     private val registerUserUseCase = RegisterUserUseCase(repository)
 
-    private val _isLoginFieldValid = MutableLiveData<Boolean>(true)
-    private val isLoginFieldValid: LiveData<Boolean>
+    private val _isLoginFieldValid = MutableLiveData<Boolean>()
+    val isLoginFieldValid: LiveData<Boolean>
         get() = _isLoginFieldValid
 
-    private val _isPasswordFieldValid = MutableLiveData<Boolean>(true)
-    private val isPasswordFieldValid: LiveData<Boolean>
+    private val _isPasswordFieldValid = MutableLiveData<Boolean>()
+    val isPasswordFieldValid: LiveData<Boolean>
         get() = _isPasswordFieldValid
 
-    private val _isLoginSuccessful = MutableLiveData<Boolean>(false)
+    private val _isLoginSuccessful = MutableLiveData<Boolean>()
     val isLoginSuccessful: LiveData<Boolean>
         get() = _isLoginSuccessful
 
-    private val _isRegisterSuccessful = MutableLiveData<Boolean>(false)
+    private val _isRegisterSuccessful = MutableLiveData<Boolean>()
     val isRegisterSuccessful: LiveData<Boolean>
         get() = _isRegisterSuccessful
 
@@ -40,7 +40,12 @@ class AuthViewModel(application: Application) : AndroidViewModel(application) {
         }
         viewModelScope.launch {
             val loginData = loginUserUseCase(authData)
-            _isLoginSuccessful.value = loginData.token.isNotEmpty()
+            if (loginData.token.isNotEmpty()){
+                _isLoginSuccessful.value = true
+            } else {
+                _isLoginFieldValid.value = false
+                _isPasswordFieldValid.value = false
+            }
         }
     }
 
@@ -50,7 +55,11 @@ class AuthViewModel(application: Application) : AndroidViewModel(application) {
         }
         viewModelScope.launch {
             val registerData = registerUserUseCase(authData)
-            _isRegisterSuccessful.value = registerData.token.isNotEmpty()
+            if (registerData.token.isNotEmpty()){
+                _isLoginSuccessful.value = true
+            } else {
+                _isLoginFieldValid.value = false
+            }
         }
     }
 
@@ -60,8 +69,11 @@ class AuthViewModel(application: Application) : AndroidViewModel(application) {
         return !(isLoginFieldValid.value == false || isPasswordFieldValid.value == false)
     }
 
-    fun resetFields() {
+    fun resetEmailField() {
         _isLoginFieldValid.value = true
+    }
+
+    fun resetPasswordField() {
         _isPasswordFieldValid.value = true
     }
 }
