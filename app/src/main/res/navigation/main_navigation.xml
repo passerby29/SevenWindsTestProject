@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_loginFragment_to_registerFragment"
             app:destination="@id/registerFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_coffeeHousesFragment"
+            app:destination="@id/coffeeHousesFragment" />
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
@@ -22,4 +25,9 @@
             android:id="@+id/action_registerFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/coffeeHousesFragment"
+        android:name="dev.passerby.seven_winds_test.presentation.fragments.CoffeeHousesFragment"
+        android:label="fragment_coffee_houses"
+        tools:layout="@layout/fragment_coffee_houses" />
 </navigation>

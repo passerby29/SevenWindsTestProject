@@ -50,6 +50,7 @@ class LoginFragment : Fragment() {
             with(binding) {
                 isLoginSuccessful.observe(viewLifecycleOwner) {
                     if (it) {
+                        findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToCoffeeHousesFragment())
                     }
                 }
                 isLoginFieldValid.observe(viewLifecycleOwner) {
