@@ -1,8 +1,9 @@
 package dev.passerby.seven_winds_test.domain.repos
 
 import dev.passerby.seven_winds_test.domain.models.AuthDataModel
+import dev.passerby.seven_winds_test.domain.models.AuthUserDataModel
 
 interface AuthRepository {
-    suspend fun registerUser(): AuthDataModel
-    suspend fun loginUser(): AuthDataModel
+    suspend fun registerUser(userData: AuthUserDataModel): AuthDataModel
+    suspend fun loginUser(userData: AuthUserDataModel): AuthDataModel
 }
