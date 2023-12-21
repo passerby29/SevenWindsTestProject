@@ -4,6 +4,8 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
+import dev.passerby.seven_winds_test.data.converters.JsonConverters
 import dev.passerby.seven_winds_test.data.models.db.CoffeeHouseItemDbModel
 
 @Database(
@@ -11,6 +13,7 @@ import dev.passerby.seven_winds_test.data.models.db.CoffeeHouseItemDbModel
     exportSchema = false,
     version = 1
 )
+@TypeConverters(JsonConverters::class)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun coffeeHousesDao(): CoffeeHousesDao

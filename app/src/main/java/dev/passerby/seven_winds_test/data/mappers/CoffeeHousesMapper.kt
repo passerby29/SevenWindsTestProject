@@ -1,7 +1,6 @@
 package dev.passerby.seven_winds_test.data.mappers
 
 import dev.passerby.seven_winds_test.data.models.db.CoffeeHouseItemDbModel
-import dev.passerby.seven_winds_test.data.models.db.CoffeeHousesListDbModel
 import dev.passerby.seven_winds_test.data.models.db.PointDbModel
 import dev.passerby.seven_winds_test.data.models.dto.CoffeeHouseItemDto
 import dev.passerby.seven_winds_test.data.models.dto.PointDto
@@ -22,11 +21,11 @@ class CoffeeHousesMapper {
         longitude = dtoPoint.longitude
     )
 
-    fun mapDbModelToEntity(dbModel: CoffeeHousesListDbModel): CoffeeHousesListModel {
+    fun mapDbModelToEntity(dbModel: List<CoffeeHouseItemDbModel>): List<CoffeeHouseItemModel> {
         val coffeeHousesList = dbModel.map {
             mapDbModelItemToEntityItem(it)
         }
-        return coffeeHousesList as CoffeeHousesListModel
+        return coffeeHousesList
     }
 
     private fun mapDbModelItemToEntityItem(dbModelItem: CoffeeHouseItemDbModel) =

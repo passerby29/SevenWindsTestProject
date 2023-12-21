@@ -33,7 +33,6 @@ class AuthRepositoryImpl(application: Application) : AuthRepository {
             if (response.code() == 200) {
                 authResult.postValue(BaseResponse.Success(response.body()))
                 Log.d(TAG, "registerUserTry: ${response.body()}")
-                editor.putString(TOKEN_KEY, response.body()?.token)
                 return authMapper.mapResponseDtoToEntity(response.body()!!)
             } else {
                 authResult.postValue(BaseResponse.Error(response.message()))
@@ -55,6 +54,7 @@ class AuthRepositoryImpl(application: Application) : AuthRepository {
             if (response.code() == 200) {
                 authResult.postValue(BaseResponse.Success(response.body()))
                 Log.d(TAG, "loginUserTry: ${response.body()}")
+                editor.putString(TOKEN_KEY, response.body()?.token).apply()
                 return authMapper.mapResponseDtoToEntity(response.body()!!)
             } else {
                 authResult.postValue(BaseResponse.Error(response.message()))
