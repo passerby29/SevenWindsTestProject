@@ -29,5 +29,18 @@
         android:id="@+id/coffeeHousesFragment"
         android:name="dev.passerby.seven_winds_test.presentation.fragments.CoffeeHousesFragment"
         android:label="fragment_coffee_houses"
-        tools:layout="@layout/fragment_coffee_houses" />
+        tools:layout="@layout/fragment_coffee_houses" >
+        <action
+            android:id="@+id/action_coffeeHousesFragment_to_menuFragment"
+            app:destination="@id/menuFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/menuFragment"
+        android:name="dev.passerby.seven_winds_test.presentation.fragments.MenuFragment"
+        android:label="fragment_menu"
+        tools:layout="@layout/fragment_menu" >
+        <argument
+            android:name="id"
+            app:argType="integer" />
+    </fragment>
 </navigation>
