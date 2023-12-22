@@ -40,12 +40,19 @@ class MenuFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         menuAdapter = MenuAdapter(requireContext())
+        menuAdapter.onItemMinusCLickListener = {
+            menuViewModel.minusCount(it)
+            menuAdapter.notifyItemChanged(it)
+        }
+        menuAdapter.onItemPlusCLickListener = {
+            menuViewModel.plusCount(it)
+            menuAdapter.notifyItemChanged(it)
+        }
         binding.menuRecyclerView.apply {
             layoutManager = GridLayoutManager(requireContext(), 2)
             adapter = menuAdapter
         }
         menuViewModel.menuList.observe(viewLifecycleOwner) {
-            menuAdapter.submitList(null)
             menuAdapter.submitList(it)
         }
     }

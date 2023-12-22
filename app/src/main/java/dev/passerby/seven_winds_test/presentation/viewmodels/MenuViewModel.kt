@@ -27,4 +27,12 @@ class MenuViewModel(
             _menuList.value = loadMenuListUseCase(id).value
         }
     }
+
+    fun plusCount(position: Int){
+        menuList.value?.get(position)?.plusCount()
+    }
+
+    fun minusCount(position: Int){
+        menuList.value?.get(position)?.minusCount()
+    }
 }

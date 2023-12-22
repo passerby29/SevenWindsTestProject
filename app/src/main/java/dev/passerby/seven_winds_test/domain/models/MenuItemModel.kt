@@ -5,5 +5,15 @@ data class MenuItemModel(
     val imageURL: String,
     val name: String,
     val price: Int,
-    val count: Int = 0
-)
+    var count: Int = 0
+) {
+    fun plusCount() {
+        count++
+    }
+
+    fun minusCount() {
+        if (count != 0) {
+            count--
+        }
+    }
+}
