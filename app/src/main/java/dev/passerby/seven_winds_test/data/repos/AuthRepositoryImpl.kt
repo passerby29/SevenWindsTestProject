@@ -1,7 +1,11 @@
 package dev.passerby.seven_winds_test.data.repos
 
+import android.app.Application
+import android.content.Context
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
+import dev.passerby.seven_winds_test.data.PREF_NAME
+import dev.passerby.seven_winds_test.data.TOKEN_KEY
 import dev.passerby.seven_winds_test.data.mappers.AuthMapper
 import dev.passerby.seven_winds_test.data.models.dto.AuthDataDto
 import dev.passerby.seven_winds_test.data.network.ApiFactory
@@ -10,7 +14,11 @@ import dev.passerby.seven_winds_test.domain.models.AuthDataModel
 import dev.passerby.seven_winds_test.domain.models.AuthUserDataModel
 import dev.passerby.seven_winds_test.domain.repos.AuthRepository
 
-class AuthRepositoryImpl : AuthRepository {
+class AuthRepositoryImpl(application: Application) : AuthRepository {
+
+    private val sharedPreferences =
+        application.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
+    private val editor = sharedPreferences.edit()
 
     private val apiService = ApiFactory.apiService
     private val authMapper = AuthMapper()
@@ -46,6 +54,7 @@ class AuthRepositoryImpl : AuthRepository {
             if (response.code() == 200) {
                 authResult.postValue(BaseResponse.Success(response.body()))
                 Log.d(TAG, "loginUserTry: ${response.body()}")
+                editor.putString(TOKEN_KEY, response.body()?.token).apply()
                 return authMapper.mapResponseDtoToEntity(response.body()!!)
             } else {
                 authResult.postValue(BaseResponse.Error(response.message()))

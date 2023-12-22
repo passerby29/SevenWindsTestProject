@@ -13,7 +13,7 @@ import kotlinx.coroutines.launch
 
 class AuthViewModel(application: Application) : AndroidViewModel(application) {
 
-    private val repository = AuthRepositoryImpl()
+    private val repository = AuthRepositoryImpl(application)
 
     private val loginUserUseCase = LoginUserUseCase(repository)
     private val registerUserUseCase = RegisterUserUseCase(repository)
