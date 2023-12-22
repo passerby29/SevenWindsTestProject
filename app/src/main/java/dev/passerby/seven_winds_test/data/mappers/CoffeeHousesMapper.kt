@@ -5,6 +5,7 @@ import dev.passerby.seven_winds_test.data.models.db.PointDbModel
 import dev.passerby.seven_winds_test.data.models.dto.CoffeeHouseItemDto
 import dev.passerby.seven_winds_test.data.models.dto.PointDto
 import dev.passerby.seven_winds_test.domain.models.CoffeeHouseItemModel
+import dev.passerby.seven_winds_test.domain.models.CoffeeHousesListModel
 import dev.passerby.seven_winds_test.domain.models.PointModel
 
 class CoffeeHousesMapper {
