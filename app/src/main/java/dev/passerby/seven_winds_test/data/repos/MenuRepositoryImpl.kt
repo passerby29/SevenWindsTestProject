@@ -26,7 +26,6 @@ class MenuRepositoryImpl(application: Application) : MenuRepository {
     private val menuListResult = MutableLiveData<BaseResponse<MenuListDto>>()
 
     override suspend fun loadMenuList(id: Int): LiveData<List<MenuItemModel>> {
-
         val menuListLiveData = MutableLiveData<List<MenuItemModel>>()
 
         val token = sharedPreferences.getString(TOKEN_KEY, "").toString()
@@ -34,26 +33,25 @@ class MenuRepositoryImpl(application: Application) : MenuRepository {
         val headersMap = HashMap<String, String>()
         headersMap[BEARER_KEY] = "Bearer $token"
 
-        menuListResult.postValue(BaseResponse.Loading())
+        menuListResult.value = BaseResponse.Loading()
         try {
             val response = apiService.loadMenuList(id, headersMap)
 
             if (response.code() == 200) {
-                menuListResult.postValue(BaseResponse.Success(response.body()))
-                val menuList = response.body()!!.map {
+                menuListResult.value = BaseResponse.Success(response.body())
+                menuListLiveData.value = response.body()?.map {
                     menuMapper.mapDtoItemToEntityItem(it)
                 }
-                menuListLiveData.value = menuList
                 Log.d(TAG, "loadMenuListTry: ${response.body()}")
+                return menuListLiveData
             } else {
-                menuListResult.postValue(BaseResponse.Error(response.message()))
+                menuListResult.value = BaseResponse.Error(response.message())
                 Log.d(TAG, "loadMenuListElse: ${response.message()}")
             }
         } catch (ex: Exception) {
-            menuListResult.postValue(BaseResponse.Error(ex.message))
+            menuListResult.value = BaseResponse.Error(ex.message)
             Log.d(TAG, "loadMenuListCatch: ${ex.message}")
         }
-        menuListLiveData.value = emptyList()
         return menuListLiveData
     }
 

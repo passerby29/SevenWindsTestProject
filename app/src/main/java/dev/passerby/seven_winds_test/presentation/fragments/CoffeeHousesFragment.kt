@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import dev.passerby.seven_winds_test.databinding.FragmentCoffeeHousesBinding
 import dev.passerby.seven_winds_test.presentation.adapters.CoffeeHousesAdapter
@@ -33,13 +34,18 @@ class CoffeeHousesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        coffeeHousesAdapter.onCoffeeHouseItemCLickListener = {
+            findNavController().navigate(CoffeeHousesFragmentDirections.actionCoffeeHousesFragmentToMenuFragment(it))
+        }
+
         binding.coffeeHousesMainRecyclerView.apply {
             layoutManager =
                 LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
             adapter = coffeeHousesAdapter
         }
 
-        viewModel.coffeeHouses.observe(viewLifecycleOwner){
+        viewModel.coffeeHouses.observe(viewLifecycleOwner) {
             coffeeHousesAdapter.submitList(it)
         }
     }
