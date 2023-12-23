@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import com.bumptech.glide.Glide
+import dev.passerby.seven_winds_test.R
 import dev.passerby.seven_winds_test.databinding.ItemMenuLayoutBinding
 import dev.passerby.seven_winds_test.domain.models.MenuItemModel
 import dev.passerby.seven_winds_test.presentation.callbacks.MenuItemDiffCallback
@@ -31,7 +32,8 @@ class MenuAdapter(private val context: Context) :
         with(binding) {
             Glide.with(context).load(item.imageURL).into(menuItemMainImageView)
             menuItemNameTextView.text = item.name
-            menuItemPriceTextView.text = "${item.price} руб"
+            menuItemPriceTextView.text =
+                context.getString(R.string.price_placeholder, item.price.toString())
             menuItemCountTextView.text = item.count.toString()
             menuItemMinusButton.setOnClickListener { onItemMinusCLickListener?.invoke(position) }
             menuItemPlusButton.setOnClickListener { onItemPlusCLickListener?.invoke(position) }

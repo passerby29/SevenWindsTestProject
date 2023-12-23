@@ -37,31 +37,36 @@ class CoffeeHousesFragment : Fragment() {
 
         coffeeHousesAdapter.onCoffeeHouseItemCLickListener = {
             findNavController().navigate(
-                CoffeeHousesFragmentDirections.actionCoffeeHousesFragmentToMenuFragment(
-                    it
-                )
+                CoffeeHousesFragmentDirections.actionCoffeeHousesFragmentToMenuFragment(it)
             )
         }
 
-        binding.coffeeHousesMainRecyclerView.apply {
-            layoutManager =
-                LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-            adapter = coffeeHousesAdapter
-        }
-
-        binding.coffeeHousesToolbar.setNavigationOnClickListener {
-            findNavController().popBackStack()
-        }
-
-        binding.loginMainButton.setOnClickListener {
-            findNavController().navigate(
-                CoffeeHousesFragmentDirections
-                    .actionCoffeeHousesFragmentToCoffeeHousesMapFragment()
-            )
-        }
+        initViews()
 
         viewModel.coffeeHouses.observe(viewLifecycleOwner) {
             coffeeHousesAdapter.submitList(it)
+        }
+    }
+
+    private fun initViews() {
+        with(binding) {
+
+            coffeeHousesMainRecyclerView.apply {
+                layoutManager =
+                    LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+                adapter = coffeeHousesAdapter
+            }
+
+            coffeeHousesToolbar.setNavigationOnClickListener {
+                findNavController().popBackStack()
+            }
+
+            loginMainButton.setOnClickListener {
+                findNavController().navigate(
+                    CoffeeHousesFragmentDirections
+                        .actionCoffeeHousesFragmentToCoffeeHousesMapFragment()
+                )
+            }
         }
     }
 

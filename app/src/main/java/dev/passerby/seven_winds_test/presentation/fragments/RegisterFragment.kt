@@ -48,7 +48,9 @@ class RegisterFragment : Fragment() {
                 }
             }
             registerLoginButton.setOnClickListener {
-                findNavController().navigate(RegisterFragmentDirections.actionRegisterFragmentToLoginFragment())
+                findNavController().navigate(
+                    RegisterFragmentDirections.actionRegisterFragmentToLoginFragment()
+                )
             }
         }
     }
@@ -58,7 +60,9 @@ class RegisterFragment : Fragment() {
             with(binding) {
                 isRegisterSuccessful.observe(viewLifecycleOwner) {
                     if (it) {
-                        findNavController().navigate(RegisterFragmentDirections.actionRegisterFragmentToLoginFragment())
+                        findNavController().navigate(
+                            RegisterFragmentDirections.actionRegisterFragmentToLoginFragment()
+                        )
                     }
                 }
                 isLoginFieldValid.observe(viewLifecycleOwner) {

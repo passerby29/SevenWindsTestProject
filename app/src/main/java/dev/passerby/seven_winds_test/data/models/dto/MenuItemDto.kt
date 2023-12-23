@@ -1,6 +1,5 @@
 package dev.passerby.seven_winds_test.data.models.dto
 
-
 import com.google.gson.annotations.SerializedName
 
 data class MenuItemDto(
