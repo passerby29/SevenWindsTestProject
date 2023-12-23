@@ -6,11 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.navigation.navGraphViewModels
 import androidx.recyclerview.widget.GridLayoutManager
+import dev.passerby.seven_winds_test.R
 import dev.passerby.seven_winds_test.databinding.FragmentMenuBinding
 import dev.passerby.seven_winds_test.presentation.adapters.MenuAdapter
-import dev.passerby.seven_winds_test.presentation.factories.MenuViewModelFactory
 import dev.passerby.seven_winds_test.presentation.viewmodels.MenuViewModel
 
 class MenuFragment : Fragment() {
@@ -21,13 +23,14 @@ class MenuFragment : Fragment() {
 
     private val args by navArgs<MenuFragmentArgs>()
 
-    private val viewModelFactory by lazy {
-        MenuViewModelFactory(requireActivity().application, args.id)
-    }
-    private val menuViewModel by lazy {
-        ViewModelProvider(this, viewModelFactory)[MenuViewModel::class.java]
-    }
+    private val menuViewModel: MenuViewModel by navGraphViewModels(R.id.main_navigation)
+
     private lateinit var menuAdapter: MenuAdapter
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        menuViewModel.loadMenuList(args.id)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -51,6 +54,9 @@ class MenuFragment : Fragment() {
         binding.menuRecyclerView.apply {
             layoutManager = GridLayoutManager(requireContext(), 2)
             adapter = menuAdapter
+        }
+        binding.loginMainButton.setOnClickListener {
+            findNavController().navigate(MenuFragmentDirections.actionMenuFragmentToOrderFragment())
         }
         menuViewModel.menuList.observe(viewLifecycleOwner) {
             menuAdapter.submitList(it)

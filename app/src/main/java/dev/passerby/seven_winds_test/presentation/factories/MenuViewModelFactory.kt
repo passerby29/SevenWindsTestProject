@@ -12,7 +12,7 @@ class MenuViewModelFactory(
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(MenuViewModel::class.java)) {
-            return MenuViewModel(application, id) as T
+            return MenuViewModel(application) as T
         } else {
             throw RuntimeException("Unknown view model class")
         }

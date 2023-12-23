@@ -12,7 +12,6 @@ import kotlinx.coroutines.launch
 
 class MenuViewModel(
     application: Application,
-    private val id: Int
 ) : AndroidViewModel(application) {
 
     private val repository = MenuRepositoryImpl(application)
@@ -22,7 +21,7 @@ class MenuViewModel(
     val menuList: LiveData<List<MenuItemModel>>
         get() = _menuList
 
-    init {
+    fun loadMenuList(id: Int){
         viewModelScope.launch {
             _menuList.value = loadMenuListUseCase(id).value
         }
