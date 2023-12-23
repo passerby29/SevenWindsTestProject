@@ -53,6 +53,13 @@ class CoffeeHousesFragment : Fragment() {
             findNavController().popBackStack()
         }
 
+        binding.loginMainButton.setOnClickListener {
+            findNavController().navigate(
+                CoffeeHousesFragmentDirections
+                    .actionCoffeeHousesFragmentToCoffeeHousesMapFragment()
+            )
+        }
+
         viewModel.coffeeHouses.observe(viewLifecycleOwner) {
             coffeeHousesAdapter.submitList(it)
         }

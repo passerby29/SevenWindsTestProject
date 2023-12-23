@@ -59,7 +59,7 @@ class MenuFragment : Fragment() {
         }
 
         binding.menuToolbar.setNavigationOnClickListener {
-            findNavController().popBackStack()
+            findNavController().navigate(MenuFragmentDirections.actionMenuFragmentToCoffeeHousesFragment())
         }
 
         menuViewModel.menuList.observe(viewLifecycleOwner) {

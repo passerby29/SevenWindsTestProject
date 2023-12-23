@@ -73,4 +73,6 @@ dependencies {
     implementation("com.squareup.okhttp3:logging-interceptor:4.11.0")
     //glide
     implementation("com.github.bumptech.glide:glide:4.16.0")
+    //yandexMapApi
+    implementation("com.yandex.android:maps.mobile:4.4.0-lite")
 }

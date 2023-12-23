@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".presentation.fragments.CoffeeHousesFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".presentation.fragments.CoffeeHousesMapFragment">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
@@ -25,38 +25,17 @@
             app:titleTextAppearance="@style/titleTextAppearance"
             app:navigationIcon="@drawable/ic_arrow_left"
             app:navigationIconTint="#846340"
-            app:title="Ближайшие кофейни"
+            app:title="Карта"
             app:titleCentered="true"
             app:titleTextColor="#846340"/>
     </com.google.android.material.appbar.AppBarLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/coffeeHousesMainRecyclerView"
-        android:layout_width="0dp"
+    <com.yandex.mapkit.mapview.MapView
+        android:id="@+id/mapview"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_margin="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/loginMainButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
-        tools:itemCount="10"
-        tools:listitem="@layout/item_coffee_house_layout" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/loginMainButton"
-        android:layout_width="0dp"
-        android:layout_height="48dp"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="32dp"
-        android:backgroundTint="#342D1A"
-        android:padding="0dp"
-        android:fontFamily="@font/sf_ui_display_bold"
-        android:includeFontPadding="false"
-        android:text="На карте"
-        android:textColor="#F6E5D1"
-        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
 </androidx.constraintlayout.widget.ConstraintLayout>
