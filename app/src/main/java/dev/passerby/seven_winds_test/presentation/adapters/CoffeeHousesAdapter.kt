@@ -28,7 +28,7 @@ class CoffeeHousesAdapter :
         with(binding) {
             coffeeHouseNameTextView.text = item.name
             root.setOnClickListener {
-                onCoffeeHouseItemCLickListener?.invoke(position+1)
+                onCoffeeHouseItemCLickListener?.invoke(item.id)
             }
         }
     }

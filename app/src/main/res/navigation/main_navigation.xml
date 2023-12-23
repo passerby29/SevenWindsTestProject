@@ -33,6 +33,9 @@
         <action
             android:id="@+id/action_coffeeHousesFragment_to_menuFragment"
             app:destination="@id/menuFragment" />
+        <action
+            android:id="@+id/action_coffeeHousesFragment_to_coffeeHousesMapFragment"
+            app:destination="@id/coffeeHousesMapFragment" />
     </fragment>
     <fragment
         android:id="@+id/menuFragment"
@@ -45,10 +48,22 @@
         <action
             android:id="@+id/action_menuFragment_to_orderFragment"
             app:destination="@id/orderFragment" />
+        <action
+            android:id="@+id/action_menuFragment_to_coffeeHousesFragment"
+            app:destination="@id/coffeeHousesFragment" />
     </fragment>
     <fragment
         android:id="@+id/orderFragment"
         android:name="dev.passerby.seven_winds_test.presentation.fragments.OrderFragment"
         android:label="fragment_order"
         tools:layout="@layout/fragment_order" />
+    <fragment
+        android:id="@+id/coffeeHousesMapFragment"
+        android:name="dev.passerby.seven_winds_test.presentation.fragments.CoffeeHousesMapFragment"
+        android:label="fragment_coffee_houses_map"
+        tools:layout="@layout/fragment_coffee_houses_map" >
+        <action
+            android:id="@+id/action_coffeeHousesMapFragment_to_menuFragment"
+            app:destination="@id/menuFragment" />
+    </fragment>
 </navigation>

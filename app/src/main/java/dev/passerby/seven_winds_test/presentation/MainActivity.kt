@@ -1,7 +1,7 @@
 package dev.passerby.seven_winds_test.presentation
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import dev.passerby.seven_winds_test.R
 
 class MainActivity : AppCompatActivity() {
