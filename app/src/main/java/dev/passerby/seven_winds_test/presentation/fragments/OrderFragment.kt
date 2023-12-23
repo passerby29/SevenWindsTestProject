@@ -35,7 +35,7 @@ class OrderFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        orderAdapter = OrderAdapter(requireContext())
+        orderAdapter = OrderAdapter()
         orderAdapter.onItemMinusCLickListener = {
             viewModel.minusCount(it)
             orderAdapter.notifyItemChanged(it)

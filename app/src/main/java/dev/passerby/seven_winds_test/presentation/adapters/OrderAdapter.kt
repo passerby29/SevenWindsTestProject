@@ -9,7 +9,7 @@ import dev.passerby.seven_winds_test.domain.models.MenuItemModel
 import dev.passerby.seven_winds_test.presentation.callbacks.MenuItemDiffCallback
 import dev.passerby.seven_winds_test.presentation.viewholders.OrderViewHolder
 
-class OrderAdapter(private val context: Context) :
+class OrderAdapter() :
     ListAdapter<MenuItemModel, OrderViewHolder>(MenuItemDiffCallback()) {
 
     var onItemMinusCLickListener: ((Int) -> Unit)? = null
