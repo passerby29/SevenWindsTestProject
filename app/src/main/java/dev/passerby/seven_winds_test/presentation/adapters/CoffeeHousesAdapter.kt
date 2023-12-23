@@ -10,6 +10,9 @@ import dev.passerby.seven_winds_test.presentation.viewholders.CoffeeHousesViewHo
 
 class CoffeeHousesAdapter :
     ListAdapter<CoffeeHouseItemModel, CoffeeHousesViewHolder>(CoffeeHouseDiffCallback()) {
+
+    var onCoffeeHouseItemCLickListener: ((Int) -> Unit)? = null
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CoffeeHousesViewHolder {
         val itemView = ItemCoffeeHouseLayoutBinding.inflate(
             LayoutInflater.from(parent.context),
@@ -24,6 +27,9 @@ class CoffeeHousesAdapter :
         val binding = holder.binding
         with(binding) {
             coffeeHouseNameTextView.text = item.name
+            root.setOnClickListener {
+                onCoffeeHouseItemCLickListener?.invoke(position+1)
+            }
         }
     }
 }
