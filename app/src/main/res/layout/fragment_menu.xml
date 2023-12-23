@@ -7,6 +7,29 @@
     android:background="@color/white"
     tools:context=".presentation.fragments.MenuFragment">
 
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#FAF9F9"
+        app:elevation="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/menuToolbar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:titleTextAppearance="@style/titleTextAppearance"
+            android:gravity="center_horizontal"
+            app:navigationIcon="@drawable/ic_arrow_left"
+            app:navigationIconTint="#846340"
+            app:title="Меню"
+            app:titleCentered="true"
+            app:titleTextColor="#846340"/>
+    </com.google.android.material.appbar.AppBarLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/menuRecyclerView"
         android:layout_width="match_parent"
@@ -16,7 +39,7 @@
         app:layout_constraintBottom_toTopOf="@+id/loginMainButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
         app:spanCount="2"
         tools:listitem="@layout/item_menu_layout" />
 
@@ -31,6 +54,8 @@
         android:text="Перейти к оплате"
         android:textColor="#F6E5D1"
         android:textSize="20sp"
+        android:fontFamily="@font/sf_ui_display_bold"
+        android:includeFontPadding="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>

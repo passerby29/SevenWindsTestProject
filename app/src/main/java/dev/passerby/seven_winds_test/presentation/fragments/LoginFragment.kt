@@ -51,6 +51,7 @@ class LoginFragment : Fragment() {
                 isLoginSuccessful.observe(viewLifecycleOwner) {
                     if (it) {
                         findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToCoffeeHousesFragment())
+                        viewModel.resetLogin()
                     }
                 }
                 isLoginFieldValid.observe(viewLifecycleOwner) {

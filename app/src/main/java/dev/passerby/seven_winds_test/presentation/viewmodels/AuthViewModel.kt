@@ -76,4 +76,8 @@ class AuthViewModel(application: Application) : AndroidViewModel(application) {
     fun resetPasswordField() {
         _isPasswordFieldValid.value = true
     }
+
+    fun resetLogin(){
+        _isLoginSuccessful.value = false
+    }
 }

@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.navigation.navGraphViewModels
@@ -58,6 +57,11 @@ class MenuFragment : Fragment() {
         binding.loginMainButton.setOnClickListener {
             findNavController().navigate(MenuFragmentDirections.actionMenuFragmentToOrderFragment())
         }
+
+        binding.menuToolbar.setNavigationOnClickListener {
+            findNavController().popBackStack()
+        }
+
         menuViewModel.menuList.observe(viewLifecycleOwner) {
             menuAdapter.submitList(it)
         }
