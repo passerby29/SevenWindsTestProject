@@ -31,11 +31,11 @@
 
 ## Скриншоты
 <div align = "center">
-  <img src="res/image1.png" width="180" alt="Фрагмент "Экран Регистрация."">
-  <img src="res/image2.png" width="180" alt="Фрагмент "Экран Авторизация"">
-  <img src="res/image3.png" width="180" alt="Фрагмент "Экран Список кофеен"">
-  <img src="res/image4.png" width="180" alt="Фрагмент "Экран Карта кофеен"">
-  <img src="res/image5.png" width="180" alt="Фрагмент "Экран Меню"">
-  <img src="res/image6.png" width="180" alt="Фрагмент "Экран Заказ"">
+  <img src="res/image_1.png" width="180" alt="Фрагмент "Экран Регистрация."">
+  <img src="res/image_2.png" width="180" alt="Фрагмент "Экран Авторизация"">
+  <img src="res/image_3.png" width="180" alt="Фрагмент "Экран Список кофеен"">
+  <img src="res/image_4.png" width="180" alt="Фрагмент "Экран Карта кофеен"">
+  <img src="res/image_5.png" width="180" alt="Фрагмент "Экран Меню"">
+  <img src="res/image_6.png" width="180" alt="Фрагмент "Экран Заказ"">
 </div> 
 
