@@ -34,6 +34,8 @@
   <img src="res/image_1.png" width="180" alt="Фрагмент "Экран Регистрация."">
   <img src="res/image_2.png" width="180" alt="Фрагмент "Экран Авторизация"">
   <img src="res/image_3.png" width="180" alt="Фрагмент "Экран Список кофеен"">
+</div> 
+<div align = "center">
   <img src="res/image_4.png" width="180" alt="Фрагмент "Экран Карта кофеен"">
   <img src="res/image_5.png" width="180" alt="Фрагмент "Экран Меню"">
   <img src="res/image_6.png" width="180" alt="Фрагмент "Экран Заказ"">
