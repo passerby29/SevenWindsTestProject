@@ -36,15 +36,17 @@ class OrderFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        orderAdapter = OrderAdapter()
-        orderAdapter.onItemMinusCLickListener = {
-            viewModel.minusCount(it)
-            orderAdapter.notifyItemChanged(it)
-        }
+        orderAdapter = OrderAdapter(requireContext())
+        orderAdapter.apply {
+            onItemMinusCLickListener = {
+                viewModel.minusCount(it)
+                notifyItemChanged(it)
+            }
 
-        orderAdapter.onItemPlusCLickListener = {
-            viewModel.plusCount(it)
-            orderAdapter.notifyItemChanged(it)
+            orderAdapter.onItemPlusCLickListener = {
+                viewModel.plusCount(it)
+                notifyItemChanged(it)
+            }
         }
 
         binding.orderRecyclerView.apply {

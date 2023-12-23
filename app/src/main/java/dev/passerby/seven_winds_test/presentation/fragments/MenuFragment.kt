@@ -42,28 +42,38 @@ class MenuFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         menuAdapter = MenuAdapter(requireContext())
-        menuAdapter.onItemMinusCLickListener = {
-            menuViewModel.minusCount(it)
-            menuAdapter.notifyItemChanged(it)
-        }
-        menuAdapter.onItemPlusCLickListener = {
-            menuViewModel.plusCount(it)
-            menuAdapter.notifyItemChanged(it)
-        }
-        binding.menuRecyclerView.apply {
-            layoutManager = GridLayoutManager(requireContext(), 2)
-            adapter = menuAdapter
-        }
-        binding.loginMainButton.setOnClickListener {
-            findNavController().navigate(MenuFragmentDirections.actionMenuFragmentToOrderFragment())
+        menuAdapter.apply {
+            onItemMinusCLickListener = {
+                menuViewModel.minusCount(it)
+                notifyItemChanged(it)
+            }
+            onItemPlusCLickListener = {
+                menuViewModel.plusCount(it)
+                notifyItemChanged(it)
+            }
         }
 
-        binding.menuToolbar.setNavigationOnClickListener {
-            findNavController().navigate(MenuFragmentDirections.actionMenuFragmentToCoffeeHousesFragment())
-        }
+        initViews()
 
         menuViewModel.menuList.observe(viewLifecycleOwner) {
             menuAdapter.submitList(it)
+        }
+    }
+
+    private fun initViews() {
+        with(binding) {
+            menuRecyclerView.apply {
+                layoutManager = GridLayoutManager(requireContext(), 2)
+                adapter = menuAdapter
+            }
+            loginMainButton.setOnClickListener {
+                findNavController().navigate(MenuFragmentDirections.actionMenuFragmentToOrderFragment())
+            }
+            menuToolbar.setNavigationOnClickListener {
+                findNavController().navigate(
+                    MenuFragmentDirections.actionMenuFragmentToCoffeeHousesFragment()
+                )
+            }
         }
     }
 

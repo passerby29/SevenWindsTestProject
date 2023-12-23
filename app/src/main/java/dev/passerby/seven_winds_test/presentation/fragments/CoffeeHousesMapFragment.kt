@@ -11,11 +11,13 @@ import androidx.navigation.fragment.findNavController
 import com.yandex.mapkit.MapKitFactory
 import com.yandex.mapkit.geometry.Point
 import com.yandex.mapkit.map.CameraPosition
+import com.yandex.mapkit.map.Map
 import com.yandex.mapkit.map.PlacemarkMapObject
 import com.yandex.mapkit.map.TextStyle
 import com.yandex.runtime.image.ImageProvider
 import dev.passerby.seven_winds_test.R
 import dev.passerby.seven_winds_test.databinding.FragmentCoffeeHousesMapBinding
+import dev.passerby.seven_winds_test.domain.models.CoffeeHouseItemModel
 import dev.passerby.seven_winds_test.presentation.viewmodels.CoffeeHousesViewModel
 
 class CoffeeHousesMapFragment : Fragment() {
@@ -29,6 +31,8 @@ class CoffeeHousesMapFragment : Fragment() {
     }
 
     private lateinit var placeMarkObject: PlacemarkMapObject
+    private lateinit var map: Map
+    private lateinit var point: Point
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,39 +49,44 @@ class CoffeeHousesMapFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        map = binding.mapview.mapWindow.map
 
         binding.coffeeHousesToolbar.setNavigationOnClickListener {
             findNavController().popBackStack()
         }
 
-        val map = binding.mapview.mapWindow.map
-        val imageProvider = ImageProvider.fromResource(requireContext(), R.drawable.im_coffee_point)
-
         viewModel.coffeeHouses.observe(viewLifecycleOwner) { list ->
-            var point = Point(list[0].point.latitude.toDouble(), list[0].point.longitude.toDouble())
+            point = Point(list[0].point.latitude.toDouble(), list[0].point.longitude.toDouble())
             map.move(CameraPosition(point, 10f, 150f, 30f))
 
             list.forEach { item ->
-                point = Point(item.point.latitude.toDouble(), item.point.longitude.toDouble())
+                initMapPoint(item)
+            }
+        }
+    }
 
-                placeMarkObject = map.mapObjects.addPlacemark().apply {
-                    geometry = point
-                    setIcon(imageProvider)
-                    setText(item.name,
-                        TextStyle().apply {
-                            size = 14f
-                            placement = TextStyle.Placement.BOTTOM
-                            color = ContextCompat.getColor(requireContext(), R.color.text_color)
-                        }
-                    )
-                    addTapListener { _, _ ->
-                        findNavController().navigate(
-                            CoffeeHousesMapFragmentDirections
-                                .actionCoffeeHousesMapFragmentToMenuFragment(item.id)
-                        )
-                        true
-                    }
+    private fun initMapPoint(item: CoffeeHouseItemModel) {
+
+        val imageProvider = ImageProvider.fromResource(requireContext(), R.drawable.im_coffee_point)
+
+        point = Point(item.point.latitude.toDouble(), item.point.longitude.toDouble())
+
+        placeMarkObject = map.mapObjects.addPlacemark().apply {
+            geometry = point
+            setIcon(imageProvider)
+            setText(item.name,
+                TextStyle().apply {
+                    size = 14f
+                    placement = TextStyle.Placement.BOTTOM
+                    color = ContextCompat.getColor(requireContext(), R.color.text_color)
                 }
+            )
+            addTapListener { _, _ ->
+                findNavController().navigate(
+                    CoffeeHousesMapFragmentDirections
+                        .actionCoffeeHousesMapFragmentToMenuFragment(item.id)
+                )
+                true
             }
         }
     }
