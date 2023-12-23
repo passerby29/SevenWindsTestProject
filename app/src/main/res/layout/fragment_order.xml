@@ -7,12 +7,35 @@
     android:background="@color/white"
     tools:context=".presentation.fragments.OrderFragment">
 
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#FAF9F9"
+        app:elevation="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/orderToolbar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            app:titleTextAppearance="@style/titleTextAppearance"
+            app:navigationIcon="@drawable/ic_arrow_left"
+            app:navigationIconTint="#846340"
+            app:title="Ваш заказ"
+            app:titleCentered="true"
+            app:titleTextColor="#846340"/>
+    </com.google.android.material.appbar.AppBarLayout>
+
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.5" />
+        app:layout_constraintGuide_percent="0.6" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/orderRecyclerView"
@@ -22,7 +45,7 @@
         app:layout_constraintBottom_toTopOf="@+id/guideline2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
         tools:listitem="@layout/item_order_layout" />
 
 
@@ -33,6 +56,8 @@
         app:layout_constraintBottom_toTopOf="@+id/loginMainButton"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginHorizontal="16dp"
+        android:fontFamily="@font/sf_ui_display_medium"
+        android:includeFontPadding="false"
         android:textColor="#846340"
         android:gravity="center"
         android:textSize="24sp"
@@ -47,6 +72,8 @@
         android:layout_marginTop="32dp"
         android:backgroundTint="#342D1A"
         android:padding="0dp"
+        android:fontFamily="@font/sf_ui_display_bold"
+        android:includeFontPadding="false"
         android:text="Оплатить"
         android:textColor="#F6E5D1"
         android:textSize="20sp"

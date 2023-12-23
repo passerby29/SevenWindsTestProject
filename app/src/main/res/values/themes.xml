@@ -3,9 +3,14 @@
     <style name="Base.Theme.SevenWindsTestProject" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
-        <item name="android:statusBarColor">@color/white</item>
+        <item name="android:statusBarColor">#FAF9F9</item>
         <item name="android:windowLightStatusBar">true</item>
     </style>
 
     <style name="Theme.SevenWindsTestProject" parent="Base.Theme.SevenWindsTestProject" />
+
+    <style name="titleTextAppearance">
+        <item name="android:fontFamily">@font/sf_ui_display_bold</item>
+        <item name="android:textSize">18sp</item>
+    </style>
 </resources>

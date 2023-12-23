@@ -36,13 +36,21 @@ class CoffeeHousesFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         coffeeHousesAdapter.onCoffeeHouseItemCLickListener = {
-            findNavController().navigate(CoffeeHousesFragmentDirections.actionCoffeeHousesFragmentToMenuFragment(it))
+            findNavController().navigate(
+                CoffeeHousesFragmentDirections.actionCoffeeHousesFragmentToMenuFragment(
+                    it
+                )
+            )
         }
 
         binding.coffeeHousesMainRecyclerView.apply {
             layoutManager =
                 LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
             adapter = coffeeHousesAdapter
+        }
+
+        binding.coffeeHousesToolbar.setNavigationOnClickListener {
+            findNavController().popBackStack()
         }
 
         viewModel.coffeeHouses.observe(viewLifecycleOwner) {

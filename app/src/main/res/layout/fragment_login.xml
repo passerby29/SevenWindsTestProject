@@ -7,6 +7,27 @@
     android:background="@color/white"
     tools:context=".presentation.fragments.LoginFragment">
 
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/bookTopBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#FAF9F9"
+        app:elevation="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/bookToolbar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            app:titleTextAppearance="@style/titleTextAppearance"
+            app:title="Вход"
+            app:titleCentered="true"
+            app:titleTextColor="#846340"/>
+    </com.google.android.material.appbar.AppBarLayout>
+
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
         android:layout_width="wrap_content"
@@ -29,6 +50,8 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:text="Email"
+            android:fontFamily="@font/sf_ui_display_regular"
+            android:includeFontPadding="false"
             android:textColor="#846340"
             android:textSize="16sp" />
 
@@ -51,6 +74,8 @@
                 android:layout_height="match_parent"
                 android:backgroundTint="@color/white"
                 android:hint="example@example.ru"
+                android:fontFamily="@font/sf_ui_display_regular"
+                android:includeFontPadding="false"
                 android:inputType="textEmailAddress"
                 android:padding="0dp"
                 android:singleLine="true"
@@ -75,6 +100,8 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:text="Пароль"
+            android:fontFamily="@font/sf_ui_display_regular"
+            android:includeFontPadding="false"
             android:textColor="#846340"
             android:textSize="16sp" />
 
@@ -98,6 +125,8 @@
                 android:backgroundTint="@color/white"
                 android:hint="******"
                 android:inputType="textPassword"
+                android:fontFamily="@font/sf_ui_display_regular"
+                android:includeFontPadding="false"
                 android:padding="0dp"
                 android:singleLine="true"
                 android:textColor="#846340"
@@ -112,6 +141,8 @@
         android:layout_height="wrap_content"
         android:gravity="end"
         android:layout_marginTop="8dp"
+        android:fontFamily="@font/sf_ui_display_regular"
+        android:includeFontPadding="false"
         android:text="Ещё не зарегистрированы?\nРегистрация"
         app:layout_constraintEnd_toEndOf="@+id/linearLayout2"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
@@ -123,6 +154,7 @@
         android:layout_marginHorizontal="16dp"
         android:backgroundTint="#342D1A"
         android:padding="0dp"
+        android:fontFamily="@font/sf_ui_display_bold"
         android:text="Войти"
         android:layout_marginTop="32dp"
         android:textColor="#F6E5D1"

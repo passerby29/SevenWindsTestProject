@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import dev.passerby.seven_winds_test.R
@@ -50,6 +51,10 @@ class OrderFragment : Fragment() {
             layoutManager =
                 LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
             adapter = orderAdapter
+        }
+
+        binding.orderToolbar.setNavigationOnClickListener {
+            findNavController().popBackStack()
         }
 
         viewModel.menuList.observe(viewLifecycleOwner) {

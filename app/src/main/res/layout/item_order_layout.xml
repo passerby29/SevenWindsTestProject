@@ -28,8 +28,9 @@
                 android:layout_height="wrap_content"
                 android:textColor="#846340"
                 android:textSize="18sp"
+                android:fontFamily="@font/sf_ui_display_bold"
+                android:includeFontPadding="false"
                 android:maxLines="1"
-                android:textStyle="bold"
                 tools:text="EM&amp;DI Coffee and Snacks" />
 
             <TextView
@@ -37,6 +38,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                android:fontFamily="@font/sf_ui_display_regular"
+                android:includeFontPadding="false"
                 android:textColor="#AF9479"
                 android:textSize="14sp"
                 tools:text="1 км от вас" />
@@ -64,6 +67,8 @@
                 android:layout_weight="1"
                 android:layout_marginHorizontal="8dp"
                 android:gravity="center"
+                android:fontFamily="@font/sf_ui_display_bold"
+                android:includeFontPadding="false"
                 android:textColor="#846340"
                 android:textSize="14sp"
                 tools:text="2" />
